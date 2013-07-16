@@ -8,10 +8,11 @@ Background:
 	When I follow "New Post"
 
 Scenario: Creating a post
-	And I fill in "Title" with "Bacon is tasty"
+	And I fill in "Title" with "Bacon"
 	And I fill in "Content" with "Bacon is one of the tastiest food in the Universe. Its tastiness abounds everything"
 	And I press "Create Post"
 	Then I should see "Post has been successfully created"
+	And I should be on the post page for "Bacon"
 	
 Scenario: Creating a post with wrong parameters
 	And I press "Create Post"

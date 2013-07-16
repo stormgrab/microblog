@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_filter :find_post, :only => [:edit,:update,:show,:delete]
+	before_filter :find_post, :only => [:edit,:update,:show,:destroy]
 
 	def index
 		@posts = Post.all
@@ -18,6 +18,24 @@ class PostsController < ApplicationController
 			flash[:alert] = "Post creation failed"
 			render :action => "new"
 		end
+	end
+
+	def edit
+
+	end
+
+	def update
+		if @post.update_attributes(params[:post])
+			redirect_to @post, :notice => "Post edited successfully"
+		else
+			flash[:alert] = "Could not edit post"
+			render :action => "edit"
+		end
+	end
+
+	def destroy
+		@post.destroy
+		redirect_to posts_path , :notice => "Post has been deleted"
 	end
 
 	private
