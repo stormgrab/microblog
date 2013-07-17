@@ -1,17 +1,35 @@
-<%- model_class = Post -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+<div class = "container">
+	<div class="container post">
+		<div class = "row span5 ">
+			<h2> <%= @post.title %> </h2>
+		</div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @post.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-  <dd><%= @post.content %></dd>
-</dl>
+		<div class = "row span10 offset1">
+			<%= @post.content %>
+		</div>
 
-<div class="form-actions">
-  <%= link_to "Back", posts_path, :class => 'btn'  %>
-  <%= link_to "Edit Post", edit_post_path(@post), :class => 'btn' %>
-  <%= link_to "Delete Post", @post , :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+		<div class="pull-left">
+			<%= link_to "Write a comment", new_post_comment_path(@post) %>
+		</div>
+
+		<div class="pull-right">
+			<%= link_to "Edit Post", edit_post_path(@post) %>
+			<%= link_to "Delete Post", @post , :method => 'delete', :confirm => 'Are you sure?', 
+				:class => 'btn btn-danger btn-small' %>
+		</div>
+	</div>
+
+	<div class = "container comments">
+		<table class="table table-striped span8 offset2">
+			<tbody>
+				<% @post.comments.each do |comment| %>
+					
+						<tr>
+							<td><%= comment.content %></td>
+						</tr>
+					
+				<%end%>
+			</tbody>
+		</table>
+	</div>
 </div>

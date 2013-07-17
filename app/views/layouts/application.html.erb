@@ -52,17 +52,10 @@
 
     <div class="container">
         <div class="row">
-          <div class="span9">
-            <%= bootstrap_flash %>
-            <% flash.each do |key, value| %>
-              <div class='flash' id='<%= key %>'>
-                <%= value %>
-              </div>
-            <% end %>
-
-            <%= yield %>
-          </div>
-          
+         <%= bootstrap_flash %>
+         
+          <%= yield %>
+         
         </div><!--/row-->
 
       <footer>
