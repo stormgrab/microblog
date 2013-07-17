@@ -14,7 +14,7 @@ Blog::Application.routes.draw do
   #   resources :products
 
   resources :posts do
-    resources :comments
+    resources :comments, :except => [:index,:show]
   end
 
 
